@@ -1,24 +1,35 @@
-<!doctype html>
-<html>
-<head>
-  <title>Mis chapas</title>
-  <meta charset="utf-8" />
-</head>
-<body>
-  <?php
-  include_once("conexion.php");
-  $consulta= "SELECT * FROM forma";//variable donde hacemos la consulta
-  //mysqli_select_db ("mis_chapas");//seleccionamos la base de datos de la consulta. Solo se usa una vez por pág.
-  mysqli_query ($conn, $consulta);//hacemos la consulta - $conn es la conexión a la bbdd
-  $datos = mysqli_query ($conn, $consulta);//variable donde almacenamos el resultado de la consulta
-  //$fila= mysqli_fetch_array ($datos);//variable - matriz que extrae los datos del resultado de la consulta y los distribuye en celdas de una fila. Sólo lee una fila cada vez. Si no comentamos la variable aqui, no saldrá el registro 1 en el while.
-    while ($fila=mysqli_fetch_array($datos))
-  {
-    echo $fila ["id_forma"];
-    echo $fila ["forma"];
-    echo "<br />";
-}
+<?php
+include_once("cabecera.php");
+include_once("functions_consulta_cerveza.php");
+?>
 
+<section id="ficha_chapa">
+  <?php
+  $id_chapa = $_GET['id_chapa'];
+  if($id_chapa == null){
+ echo "No se ha seleccionado ninguna chapa";
+  } else {
+  $fila = info_cerveza($id_chapa);
+  echo '<div id="img-ficha"><img src="' . $fila['foto'] . '" /></div>
+      <H1>' . $fila['nom_cerveza'] . '</H1>
+      <p><span class="ficha">Forma</span>: ' . $fila['nom_forma'] . '</p>
+      <p><span class="ficha">Repeticiones</span>: ' . $fila['num_repetida'] . '</p>
+      <p><span class="ficha">Marca</span>: ' . $fila['nom_marca'] . '</p>
+      <p><span class="ficha">Graduación</span>: ' . $fila['graduacion'] . '</p>
+      <p><span class="ficha">Fermentación</span>: ' . $fila['nom_fermentacion'] . '</p>
+      <p><span class="ficha">Tipo/Subtipo</span>: ' . $fila['nom_tipo'] . ' / '. $fila['nom_subtipo'] .'</p>
+      <p><span class="ficha">Recipiente</span>: ' . $fila['nom_recipiente'] . '</p>
+      <p><span class="ficha">Color</span>: ' . $fila['nom_color'] . '</p>
+      <p><span class="ficha">Cervecera</span>: ' . $fila['nom_cervecera'] . '</p>
+      <p><span class="ficha">Ciudad</span>: ' . $fila['nom_ciudad'] . '</p>
+      <p><span class="ficha">Región</span>: ' . $fila['nom_region'] . '</p>
+      <p><span class="ficha">Pais</span>: ' . $fila['nom_pais'] . '</p>
+      <p><span class="ficha">Descripción</span>: ' . $fila['descripcion'] . '<br><a href="' . $fila['enlace_desc'] . '" target="_blank">Enlace a la descripción</a></p>';
+  }
   ?>
-</body>
-</html>
+  
+</section>
+
+<?php
+include_once("footer.php");
+?>
