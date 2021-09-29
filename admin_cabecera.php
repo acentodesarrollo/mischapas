@@ -28,7 +28,8 @@
         <div id="contenido">
             <nav>
                 <ul>
-                    <li><a href="http://localhost:8888/mischapas/admin_listado.php">Listado</a></li>
+                    <li><a href="http://localhost:8888/mischapas/admin_listado_chapas.php">Listado chapas</a></li>
+                    <li><a href="http://localhost:8888/mischapas/admin_listado_cervezas.php">Listado cervezas</a></li>
                     <li><a href="http://localhost:8888/mischapas/admin_form_cerveza.php">Añadir cerveza</a></li>
                     <li><a href="http://localhost:8888/mischapas/admin_form_chapa.php">Añadir chapa</a></li>
                 </ul>

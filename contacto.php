@@ -1,7 +1,18 @@
 <?php
 include("cabecera.php");
+include("aux_contacto.php");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST["email"];
+    $msg = $_POST["msg"];
+    $asunto = $_POST["asunto"];
+    if(enviar_mail($email,$asunto,$msg)){
+        echo '<script type="text/javascript">
+            alert("Enviado Correctamente");
+            </script>';
+    };
+}
 ?>
-<form action="aux_contacto.php" method="post">
+<form method="post">
     <ul>
         <li>
             <label for="name">Nombre:</label>
@@ -17,7 +28,7 @@ include("cabecera.php");
         </li>
         <li>
             <label for="msg">Mensaje:</label>
-            <textarea id="msg" name="user_message"></textarea>
+            <textarea id="msg" name="msg"></textarea>
         </li>
         <button type="submit">Enviar</button>
     </ul>

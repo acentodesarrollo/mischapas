@@ -19,12 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!--Pedimos foto-->
         <p>
             <label for="imagen">Subir imagen</label>
-            <input type="file" name="imagen" id="imagen">
+            <input type="file" name="imagen" id="imagen" required>
         </p>
         <!--Pedimos cerveza-->
         <p>
             <label for="cerveza">Cerveza</label>
-            <input name="cerveza" id="cerveza" type="text">
+            <input name="cerveza" id="cerveza" type="text" required>
             <input name="id_cerveza" id="id_cerveza" value="0" type="hidden">
             <input id="cerveza_selected" type="hidden">
         </p>
@@ -37,11 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!--Preguntamos Nº repetida-->
         <p>
             <label for="num_repetida">Nº repetida</label>
-            <input name="num_repetida" type="number" id="num_repetida">
+            <input name="num_repetida" type="number" id="num_repetida" placeholder="0" min="0">
         </p>
         <!--Pedimos forma-->
         <p>
-            <label for="forma">Forma</label>
+            <label for=" forma">Forma</label>
             <select name="forma" id="forma" required>
                 <option value="0">Selecciona</option>
                 <?php
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 opcion = $("#cerveza").val();
                 $.ajax({
                     type: "POST",
-                    url: "aux_buscar_cerveza.php",
+                    url: "aux_buscar_guardados.php",
                     data: {
                         "enviar_opcion": opcion,
                         "consulta": "cerveza",

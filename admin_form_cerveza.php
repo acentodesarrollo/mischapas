@@ -32,12 +32,12 @@
       <!--Pedimos nombre-->
       <p>
         <label for="nombre">Cerveza</label>
-        <input type="text" name="cerveza" id="cerveza">
+        <input type="text" name="cerveza" id="cerveza" required>
       </p>
       <!--Pedimos graduacion-->
       <p>
         <label for="graduacion">Graduación</label>
-        <input type="number" name="graduacion" id="graduacion" step="0.5">
+        <input type="number" name="graduacion" id="graduacion" step="0.1" required>
       </p>
 
       <!--Pedimos pais-->
@@ -57,21 +57,21 @@
       <!--Pedimos region-->
       <p>
         <label for="region">Región</label>
-        <input name="region" id="region" type="text">
+        <input name="region" id="region" type="text" required>
         <input name="id_region" id="id_region" value="0" type="hidden">
         <input id="region_selected" type="hidden">
       </p>
       <!--Pedimos ciudad-->
       <p>
         <label for="ciudad">Ciudad</label>
-        <input name="ciudad" id="ciudad" type="text">
+        <input name="ciudad" id="ciudad" type="text" required>
         <input name="id_ciudad" id="id_ciudad" value="0" type="hidden">
         <input id="ciudad_selected" type="hidden">
       </p>
       <!--Pedimos fermentacion-->
       <p>
         <label for="fermentacion">Fermentación</label>
-        <select name="fermentacion" required>
+        <select name="fermentacion" required id="fermentacion">
           <option value="0">Selecciona</option>
           <?php
           $consulta_fermentacion = "SELECT * FROM fermentacion";
@@ -85,7 +85,7 @@
       <!--Pedimos color cerveza-->
       <p>
         <label for="color_cerveza">Color de la cerveza:</label>
-        <select name="color">
+        <select name="color" id="color" required>
           <option value="0">Selecciona</option>
           <?php
           $consulta_color_cerveza = "SELECT * FROM color";
@@ -99,21 +99,21 @@
       <!--Pedimos marca-->
       <p>
         <label for="marca">Marca</label>
-        <input name="marca" id="marca" type="text">
+        <input name="marca" id="marca" type="text" required>
         <input name="id_marca" id="id_marca" value="0" type="hidden">
         <input id="marca_selected" type="hidden">
       </p>
       <!--Pedimos cervecera-->
       <p>
         <label for="nombre">Cervecera</label>
-        <input type="text" name="cervecera" id="cervecera">
-        <input name="id_cervecera"id="id_cervecera" value="0" type="hidden">
+        <input type="text" name="cervecera" id="cervecera" required>
+        <input name="id_cervecera" id="id_cervecera" value="0" type="hidden">
         <input id="cervecera_selected" type="hidden">
       </p>
       <!--Pedimos recipiente-->
       <p>
         <label for="recipiente">Recipiente</label>
-        <select name="recipiente">
+        <select name="recipiente" id="recipiente" required>
           <option value="0">Selecciona</option>
           <?php
           $consulta_recipiente = "SELECT * FROM recipiente";
@@ -126,7 +126,7 @@
         <!--Pedimos tipo-->
       <p>
         <label for="tipo">Tipo</label>
-        <select name="tipo" id="tipo">
+        <select name="tipo" id="tipo" required>
           <option value="0">Selecciona</option>
           <?php
           $consulta_tipo = "SELECT * FROM tipo";
@@ -140,7 +140,7 @@
       <!--Pedimos subtipo-->
       <p>
         <label for="subtipo">Subtipo</label>
-        <select name="subtipo" id="subtipo">
+        <select name="subtipo" id="subtipo" required>
           <option value="0">Selecciona</option>
           <!--eliminamos este option porque se sustituye por el del archivo buscar_subtipo.php-->
         </select>
@@ -190,7 +190,7 @@
           pais = $("#pais").val();
           $.ajax({
             type: "POST",
-            url: "aux_buscar_region.php",
+            url: "aux_buscar_guardados.php",
             data: {
               "enviar_opcion": opcion,
               "consulta": "region",
@@ -235,11 +235,11 @@
           region = $("#region").val();
           $.ajax({
             type: "POST",
-            url: "aux_buscar_region.php",
+            url: "aux_buscar_guardados.php",
             data: {
               "enviar_opcion": opcion,
               "consulta": "ciudad",
-              "region":region
+              "region": region
             }, //creo una nueva variable que es la que voy a enviar
             dataType: 'json',
             success: function(respuesta) {
@@ -280,7 +280,7 @@
           opcion = $("#cervecera").val();
           $.ajax({
             type: "POST",
-            url: "aux_buscar_cervecera.php",
+            url: "aux_buscar_guardados.php",
             data: {
               "enviar_opcion": opcion,
               "consulta": "cervecera",
@@ -323,7 +323,7 @@
           opcion = $("#marca").val();
           $.ajax({
             type: "POST",
-            url: "aux_buscar_marca.php",
+            url: "aux_buscar_guardados.php",
             data: {
               "enviar_opcion": opcion,
               "consulta": "marca",
