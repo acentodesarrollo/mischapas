@@ -177,10 +177,10 @@ header {
     padding: 15px 30px;
 }
 
-header h1 {
+header h1 a {
     font-family: 'Montserrat';
     font-weight: 200;
-    font-size: 3em;
+    font-size: 2em;
     color: #fff;
 }
 
@@ -220,11 +220,18 @@ nav ul li a:hover {
 
 /*---------Centro---------*/
 
+
+/*------------------------*/
+
+
+/*---------Listados---------*/
+
 #listado ul li {
     list-style: none;
     margin-bottom: 30px;
     margin-right: 50px;
     float: left;
+    text-align: center;
 }
 
 #listado ul li a {
@@ -251,6 +258,9 @@ section>p {
     margin-bottom: -7px;
 }
 
+
+/*---------Ficha---------*/
+
 .ficha {
     font-family: 'Montserrat';
     font-weight: bold;
@@ -268,8 +278,11 @@ section>p {
     float: left;*/
 }
 
+
+/*---------Tabla---------*/
+
 table {
-    width: 75%;
+    width: 100%;
     margin: 50px auto;
 }
 
@@ -375,4 +388,12 @@ footer {
     display: block;
     clear: both;
     margin-top: 30px;
+}
+
+footer a {
+    color: #8d8c8c;
+}
+
+footer a:hover {
+    color: #bbc46a;
 }

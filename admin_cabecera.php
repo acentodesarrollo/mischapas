@@ -22,7 +22,7 @@
     <div id="contenedor">
         <header>
             <h1>
-                <a haref="http://localhost:8888/mischapas/admin_listado.php">Mis chapas | Admin</a>
+                <a href="http://localhost:8888/mischapas/admin_listado.php">Mis chapas | Admin</a>
             </h1>
         </header>
         <div id="contenido">

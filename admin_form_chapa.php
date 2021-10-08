@@ -3,41 +3,70 @@
 include_once("admin_cabecera.php");
 include_once("conexion.php");
 include_once("functions_consulta_cerveza.php");
+$id = $_GET["id"]; //recuperamos el id para mostrar el form editar chapa
+if ($id != null) {
+    $chapa = info_chapa($id);
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $imagen = $_FILES["imagen"];
     $cerveza_id = $_POST["id_cerveza"];
     $repetida = $_POST["repetida"];
     $num_repetida = $_POST["num_repetida"];
     $forma = $_POST["forma"];
-    guardar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma);
+    if($id!=null){
+        actualizar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma, $id, $chapa['foto']);
+    }else{
+        guardar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma);
+    }
 }
+
 ?>
-<!--empezamos con el formulario-->
+<!--empezamos con el formulario-->  
 <form method="post" enctype="multipart/form-data">
     <fieldset>
-        <legend id="add-chapa">Añadir chapa</legend>
+        <?php
+            if(isset ($chapa)){
+        ?>
+        <legend id="add-chapa">Editar chapa</legend>
+        
+                <img src="<?php echo $chapa['foto']; ?>">
+          <?php
+            }else{
+          ?>
+                <legend id="add-chapa">Añadir chapa</legend>
+            <?php
+            }
+            ?>
         <!--Pedimos foto-->
         <p>
             <label for="imagen">Subir imagen</label>
-            <input type="file" name="imagen" id="imagen" required>
+            <input type="file" name="imagen" id="imagen">
         </p>
         <!--Pedimos cerveza-->
         <p>
             <label for="cerveza">Cerveza</label>
-            <input name="cerveza" id="cerveza" type="text" required>
-            <input name="id_cerveza" id="id_cerveza" value="0" type="hidden">
+            <input name="cerveza" id="cerveza" type="text" value="<?php echo $chapa['nom_cerveza'] ?>" required>
+            <input name="id_cerveza" id="id_cerveza" value="<?php
+                                                            if (isset($chapa['id_cerveza'])) {
+                                                                echo $chapa['id_cerveza'];
+                                                            } else {
+                                                                echo 0;
+                                                            }
+                                                            ?>" type="hidden">
             <input id="cerveza_selected" type="hidden">
         </p>
 
         <!--Preguntamos si está repetida-->
         <p>
             <label for="repetida">¿Está repetida?</label>
-            <input name="repetida" type="checkbox" id="repetida">
+            <input name="repetida" type="checkbox" id="repetida" value="<?php echo $chapa['repetida']; ?>" <?php 
+            if($chapa['repetida']==1){
+                echo 'checked'; }?>>
         </p>
         <!--Preguntamos Nº repetida-->
         <p>
             <label for="num_repetida">Nº repetida</label>
-            <input name="num_repetida" type="number" id="num_repetida" placeholder="0" min="0">
+            <input name="num_repetida" type="number" id="num_repetida" placeholder="0" min="0" value="<?php echo $chapa['num_repetida'] ?>">
         </p>
         <!--Pedimos forma-->
         <p>
@@ -48,7 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $consulta_forma = "SELECT * FROM forma";
                 $datos = mysqli_query($conn, $consulta_forma);
                 while ($fila = mysqli_fetch_array($datos)) {
-                    echo '<option value="' . $fila['id'] . '">' . $fila['nom_forma'] . '</option>';
+                ?>
+                    <option value="
+                    <?php
+                    echo $fila['id'];
+                    ?>
+                    " <?php
+                        if ($chapa['id_forma'] == $fila['id']) {
+                            echo 'selected';
+                        }
+                        ?>>
+                        <?php echo $fila['nom_forma'] ?> </option>;
+                <?php
                 }
                 ?>
             </select>

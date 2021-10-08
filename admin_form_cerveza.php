@@ -3,8 +3,13 @@
   include_once("admin_cabecera.php");
   include_once("conexion.php");
   include_once("functions_consulta_cerveza.php");
+  $id = $_GET["id"];
+  //recuperamos el id para mostrar el form editar cerveza
+  if ($id != null) {
+    $cerveza = info_cerveza_by_id($id);
+  }
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cerveza = $_POST["cerveza"];
+    $cerveza_post = $_POST["cerveza"];
     $cervecera = $_POST["cervecera"];
     $cervecera_id = $_POST["id_cervecera"];
     $graduacion = $_POST["graduacion"];
@@ -22,22 +27,39 @@
     $subtipo = $_POST["subtipo"];
     $desc = $_POST["desc"];
     $enlace_desc = $_POST["enlace_desc"];
-    guardar_cerveza($cerveza, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc);
+    if ($id != null) {
+      if (actualizar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc, $id)) {
+        header("Refresh:0,url=admin_form_cerveza.php?id=" . $id . "&update=true"); //refrecamos la página para que cargue la desc. actualizada y no la guardada la vez anterior
+      }
+    } else {
+      guardar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc);
+    }
   }
   ?>
   <!--empezamos con el formulario-->
-  <form method="post" enctype="multipart/form-data">
+  <form method="post">
     <fieldset>
-      <legend id="add-chapa">Añadir cerveza</legend>
+      <?php
+      if (isset($cerveza)) {
+      ?>
+        <legend id="add-chapa">Editar cerveza</legend>
+      <?php
+      } else {
+      ?>
+        <legend id="add-chapa">Añadir cerveza</legend>
+      <?php
+      }
+      ?>
       <!--Pedimos nombre-->
       <p>
         <label for="nombre">Cerveza</label>
-        <input type="text" name="cerveza" id="cerveza" required>
+        <?php echo $cerveza['nom_cerveza'] ?>
+        <input type="text" name="cerveza" id="cerveza" value="<?php echo $cerveza['nom_cerveza'] ?>" required>
       </p>
       <!--Pedimos graduacion-->
       <p>
         <label for="graduacion">Graduación</label>
-        <input type="number" name="graduacion" id="graduacion" step="0.1" required>
+        <input type="number" name="graduacion" id="graduacion" step="0.1" value="<?php echo $cerveza['graduacion'] ?>" required>
       </p>
 
       <!--Pedimos pais-->
@@ -48,8 +70,19 @@
           <?php
           $consulta_pais = "SELECT * FROM pais_continente";
           $datos = mysqli_query($conn, $consulta_pais);
-          while ($fila = mysqli_fetch_array($datos)) {
-            echo '<option value="' . $fila['id'] . '">' . $fila['nom_pais'] . '</option>';
+          while ($fila = mysqli_fetch_array($datos)) { ?>
+            <option value="
+                    <?php
+                    echo $fila['id'];
+                    ?>
+                    " <?php
+                      if ($cerveza['id_pais'] == $fila['id']) {
+                        echo 'selected';
+                      }
+                      ?>>
+              <?php echo $fila['nom_pais'] ?> </option>
+
+          <?php
           }
           ?>
         </select>
@@ -57,15 +90,27 @@
       <!--Pedimos region-->
       <p>
         <label for="region">Región</label>
-        <input name="region" id="region" type="text" required>
-        <input name="id_region" id="id_region" value="0" type="hidden">
+        <input name="region" id="region" type="text" value="<?php echo $cerveza['nom_region'] ?>" required>
+        <input name="id_region" id="id_region" value="<?php
+                                                      if (isset($cerveza['id_region'])) {
+                                                        echo $cerveza['id_region'];
+                                                      } else {
+                                                        echo 0;
+                                                      }
+                                                      ?>" type="hidden">
         <input id="region_selected" type="hidden">
       </p>
       <!--Pedimos ciudad-->
       <p>
         <label for="ciudad">Ciudad</label>
-        <input name="ciudad" id="ciudad" type="text" required>
-        <input name="id_ciudad" id="id_ciudad" value="0" type="hidden">
+        <input name="ciudad" id="ciudad" type="text" value="<?php echo $cerveza['nom_ciudad'] ?>" required>
+        <input name="id_ciudad" id="id_ciudad" value="<?php
+                                                      if (isset($cerveza['id_ciudad'])) {
+                                                        echo $cerveza['id_ciudad'];
+                                                      } else {
+                                                        echo 0;
+                                                      }
+                                                      ?>" type="hidden">
         <input id="ciudad_selected" type="hidden">
       </p>
       <!--Pedimos fermentacion-->
@@ -77,7 +122,19 @@
           $consulta_fermentacion = "SELECT * FROM fermentacion";
           $datos = mysqli_query($conn, $consulta_fermentacion);
           while ($fila = mysqli_fetch_array($datos)) {
-            echo '<option value="' . $fila["id"] . '">' . $fila['nom_fermentacion'] . '</option>';
+          ?>
+            <option value="
+                    <?php
+                    echo $fila['id'];
+                    ?>
+                    " <?php
+                      if ($cerveza['id_fermentacion'] == $fila['id']) {
+                        echo 'selected';
+                      }
+                      ?>>
+              <?php echo $fila['nom_fermentacion'] ?> </option>
+
+          <?php
           }
           ?>
         </select>
@@ -91,7 +148,19 @@
           $consulta_color_cerveza = "SELECT * FROM color";
           $datos = mysqli_query($conn, $consulta_color_cerveza);
           while ($fila = mysqli_fetch_array($datos)) {
-            echo '<option value="' . $fila["id"] . '">' . $fila["nom_color"] . '</option>';
+          ?>
+            <option value="
+                    <?php
+                    echo $fila['id'];
+                    ?>
+                    " <?php
+                      if ($cerveza['id_color'] == $fila['id']) {
+                        echo 'selected';
+                      }
+                      ?>>
+              <?php echo $fila['nom_color'] ?> </option>
+
+          <?php
           }
           ?>
         </select>
@@ -99,15 +168,27 @@
       <!--Pedimos marca-->
       <p>
         <label for="marca">Marca</label>
-        <input name="marca" id="marca" type="text" required>
-        <input name="id_marca" id="id_marca" value="0" type="hidden">
+        <input name="marca" id="marca" type="text" value="<?php echo $cerveza['nom_marca'] ?>" required>
+        <input name="id_marca" id="id_marca" value="<?php
+                                                    if (isset($cerveza['id_marca'])) {
+                                                      echo $cerveza['id_marca'];
+                                                    } else {
+                                                      echo 0;
+                                                    }
+                                                    ?>" type="hidden">
         <input id="marca_selected" type="hidden">
       </p>
       <!--Pedimos cervecera-->
       <p>
         <label for="nombre">Cervecera</label>
-        <input type="text" name="cervecera" id="cervecera" required>
-        <input name="id_cervecera" id="id_cervecera" value="0" type="hidden">
+        <input type="text" name="cervecera" id="cervecera" value="<?php echo $cerveza['nom_cervecera'] ?>" required>
+        <input name="id_cervecera" id="id_cervecera" value="<?php
+                                                            if (isset($cerveza['id_cervecera'])) {
+                                                              echo $cerveza['id_cervecera'];
+                                                            } else {
+                                                              echo 0;
+                                                            }
+                                                            ?>" type="hidden">
         <input id="cervecera_selected" type="hidden">
       </p>
       <!--Pedimos recipiente-->
@@ -119,7 +200,19 @@
           $consulta_recipiente = "SELECT * FROM recipiente";
           $datos = mysqli_query($conn, $consulta_recipiente);
           while ($fila = mysqli_fetch_array($datos)) {
-            echo '<option value="' . $fila["id"] . '">' . $fila["nom_recipiente"] . '</option>';
+          ?>
+            <option value="
+                    <?php
+                    echo $fila['id'];
+                    ?>
+                    " <?php
+                      if ($cerveza['id_recipiente'] == $fila['id']) {
+                        echo 'selected';
+                      }
+                      ?>>
+              <?php echo $fila['nom_recipiente'] ?> </option>
+
+          <?php
           }
           ?>
         </select>
@@ -132,7 +225,19 @@
           $consulta_tipo = "SELECT * FROM tipo";
           $datos = mysqli_query($conn, $consulta_tipo);
           while ($fila = mysqli_fetch_array($datos)) {
-            echo '<option value="' . $fila['id'] . '">' . $fila['nom_tipo'] . '</option>';
+          ?>
+            <option value="
+                    <?php
+                    echo $fila['id'];
+                    ?>
+                    " <?php
+                      if ($cerveza['id_tipo'] == $fila['id']) {
+                        echo 'selected';
+                      }
+                      ?>>
+              <?php echo $fila['nom_tipo'] ?> </option>
+
+          <?php
           }
           ?>
         </select>
@@ -148,28 +253,59 @@
       <!--Pedimos descripción-->
       <p>
         <label for="desc">Descripción</label><br>
-        <textarea name="desc" id="desc"></textarea>
+        <textarea name="desc" id="desc"><?php echo $cerveza['descripcion']; ?></textarea>
       </p>
       <!--Pedimos enlace descripcion-->
       <p>
         <label for="enlace_desc">Enlace descripción</label>
-        <input type="enlace_desc" name="enlace_desc" id="enlace_desc">
+        <input type="text" name="enlace_desc" id="enlace_desc" value="<?php echo $cerveza['enlace_desc'] ?>">
       </p>
       <!--Fin campos de peticion de datos-->
       <button type="submit"><a>Guardar</a></button>
     </fieldset>
   </form>
-
+  <?php
+  if($_GET["update"]){
+  echo "La cerveza se ha actualizado correctamente";
+  }
+  ?>
   <!--Script para mostrar los subtipos dependiendo del tipo seleccionado-->
   <script>
     $(document).ready(function() {
-      // Aqui verificamos la seleccion
-      $("#tipo").change(function() { //cuando seleccionamos la opcion del select
-        var tipo = $(this).val(); //hace referencia al id del value tipo
+      var tipo = $("#tipo").val(); //hace referencia al id del value tipo
+      if (tipo != 0) {
+        var subtipo = <?php
+                      if ($id != null) {
+                        echo $cerveza["id_subtipo"] . ";";
+                      } else {
+                        echo "0;";
+                      }
+                      ?>
         $.ajax({
           type: "POST",
           url: "aux_buscar_subtipo.php",
-          data: "enviar_tipo=" + tipo, //creo una nueva variable que es la que voy a enviar
+          data: {
+            "enviar_tipo": tipo,
+            "enviar_subtipo": subtipo
+          }, //creo una nueva variable que es la que voy a enviar
+          success: function(respuesta) {
+            $("#subtipo").html(respuesta); //reemplazamos el html del subtipo por el del archivo buscar_subtipo.php
+          },
+          error: function(xhr, estado, error) {
+            console.log("Error: " + JSON.parse(error));
+          }
+        })
+      }
+      // Aqui verificamos la seleccion
+      $("#tipo").change(function() { //cuando seleccionamos la opcion del select
+        tipo = $(this).val();
+        $.ajax({
+          type: "POST",
+          url: "aux_buscar_subtipo.php",
+          data: {
+            "enviar_tipo": tipo,
+            "enviar_subtipo": subtipo
+          }, //creo una nueva variable que es la que voy a enviar
           success: function(respuesta) {
             $("#subtipo").html(respuesta); //reemplazamos el html del subtipo por el del archivo buscar_subtipo.php
           },
