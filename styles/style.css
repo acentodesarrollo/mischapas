@@ -284,12 +284,13 @@ section>p {
 table {
     width: 100%;
     margin: 50px auto;
+    border-spacing: 0em;
 }
 
 table,
 th,
 td {
-    border: #333 solid 1px;
+    border: #525352 solid 0.3px;
 }
 
 th,
