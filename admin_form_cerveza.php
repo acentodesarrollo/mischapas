@@ -1,38 +1,43 @@
   <?php
-  //Formulario alta chapa
+  //Formulario alta cerveza
   include_once("admin_cabecera.php");
-  include_once("conexion.php");
-  include_once("functions_consulta_cerveza.php");
+  // include_once("conexion.php");
+  include_once("functions.php");
   $id = $_GET["id"];
   //recuperamos el id para mostrar el form editar cerveza
   if ($id != null) {
     $cerveza = info_cerveza_by_id($id);
   }
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cerveza_post = $_POST["cerveza"];
-    $cervecera = $_POST["cervecera"];
-    $cervecera_id = $_POST["id_cervecera"];
-    $graduacion = $_POST["graduacion"];
-    $pais = $_POST["pais"];
-    $region = $_POST["region"];
-    $region_id = $_POST["id_region"];
-    $ciudad = $_POST["ciudad"];
-    $ciudad_id = $_POST["id_ciudad"];
-    $fermentacion = $_POST["fermentacion"];
-    $color = $_POST["color"];
-    $marca = $_POST["marca"];
-    $marca_id = $_POST["id_marca"];
-    $recipiente = $_POST["recipiente"];
-    $tipo = $_POST["tipo"];
-    $subtipo = $_POST["subtipo"];
-    $desc = $_POST["desc"];
-    $enlace_desc = $_POST["enlace_desc"];
-    if ($id != null) {
-      if (actualizar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc, $id)) {
-        header("Refresh:0,url=admin_form_cerveza.php?id=" . $id . "&update=true"); //refrecamos la p谩gina para que cargue la desc. actualizada y no la guardada la vez anterior
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      $cerveza_post = $_POST["cerveza"];
+      $cervecera = $_POST["cervecera"];
+      $cervecera_id = $_POST["id_cervecera"];
+      $graduacion = $_POST["graduacion"];
+      $pais = $_POST["pais"];
+      $region = $_POST["region"];
+      $region_id = $_POST["id_region"];
+      $ciudad = $_POST["ciudad"];
+      $ciudad_id = $_POST["id_ciudad"];
+      $fermentacion = $_POST["fermentacion"];
+      $color = $_POST["color"];
+      $marca = $_POST["marca"];
+      $marca_id = $_POST["id_marca"];
+      $recipiente = $_POST["recipiente"];
+      $tipo = $_POST["tipo"];
+      $subtipo = $_POST["subtipo"];
+      $desc = $_POST["desc"];
+      $enlace_desc = $_POST["enlace_desc"];
+      $cerveza_repetida=$_POST["cerveza_repetida"];
+      if($cerveza_repetida=="1"){
+        echo "Esta cerveza ya existe";
+      }else{     
+      if ($id != null) {
+        if (actualizar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc, $id)) {
+          header("Refresh:0,url=admin_form_cerveza.php?id=" . $id . "&update=true"); //refrecamos la p醙ina para que cargue la desc. actualizada y no la guardada la vez anterior
+        }
+      } else {
+        guardar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc);
       }
-    } else {
-      guardar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc);
     }
   }
   ?>
@@ -46,19 +51,34 @@
       <?php
       } else {
       ?>
-        <legend id="add-chapa">A帽adir cerveza</legend>
+        <legend id="add-chapa">A馻dir cerveza</legend>
       <?php
       }
       ?>
       <!--Pedimos nombre-->
-      <p>
+      <!-- <p>
         <label for="nombre">Cerveza</label>
-        <?php echo $cerveza['nom_cerveza'] ?>
-        <input type="text" name="cerveza" id="cerveza" value="<?php echo $cerveza['nom_cerveza'] ?>" required>
-      </p>
+        <?php //echo $cerveza['nom_cerveza'] ?>
+        <input type="text" name="cerveza" id="cerveza" value="<?php //echo $cerveza['nom_cerveza'] ?>" required>
+      </p> -->
+
+      <p>
+            <label for="cerveza">Cerveza</label>
+            <input name="cerveza" id="cerveza" type="text" value="<?php echo $cerveza['nom_cerveza'] ?>" required>
+            <input name="id_cerveza" id="id_cerveza" value="<?php
+                                                            if (isset($cerveza['id_cerveza'])) {
+                                                                echo $cerveza['id_cerveza'];
+                                                            } else {
+                                                                echo 0;
+                                                            }
+                                                            ?>" type="hidden">
+            <input id="cerveza_selected" type="hidden">
+            <p id="cerveza_mensaje" style="display:none">Esta cerveza ya existe</p>
+            <input type="hidden" name="cerveza_repetida" id="cerveza_repetida" value="0">
+        </p>
       <!--Pedimos graduacion-->
       <p>
-        <label for="graduacion">Graduaci贸n</label>
+        <label for="graduacion">Graduaci髇</label>
         <input type="number" name="graduacion" id="graduacion" step="0.1" value="<?php echo $cerveza['graduacion'] ?>" required>
       </p>
 
@@ -89,7 +109,7 @@
       </p>
       <!--Pedimos region-->
       <p>
-        <label for="region">Regi贸n</label>
+        <label for="region">Regi髇</label>
         <input name="region" id="region" type="text" value="<?php echo $cerveza['nom_region'] ?>" required>
         <input name="id_region" id="id_region" value="<?php
                                                       if (isset($cerveza['id_region'])) {
@@ -115,7 +135,7 @@
       </p>
       <!--Pedimos fermentacion-->
       <p>
-        <label for="fermentacion">Fermentaci贸n</label>
+        <label for="fermentacion">Fermentaci髇</label>
         <select name="fermentacion" required id="fermentacion">
           <option value="0">Selecciona</option>
           <?php
@@ -247,17 +267,17 @@
         <label for="subtipo">Subtipo</label>
         <select name="subtipo" id="subtipo" required>
           <option value="0">Selecciona</option>
-          <!--eliminamos este option porque se sustituye por el del archivo buscar_subtipo.php-->
+          <!--eliminamos este option porque se sustituye por el del archivo aux_buscar_subtipo.php-->
         </select>
       </p>
-      <!--Pedimos descripci贸n-->
+      <!--Pedimos descripci髇-->
       <p>
-        <label for="desc">Descripci贸n</label><br>
+        <label for="desc">Descripci髇</label><br>
         <textarea name="desc" id="desc"><?php echo $cerveza['descripcion']; ?></textarea>
       </p>
       <!--Pedimos enlace descripcion-->
       <p>
-        <label for="enlace_desc">Enlace descripci贸n</label>
+        <label for="enlace_desc">Enlace descripci髇</label>
         <input type="text" name="enlace_desc" id="enlace_desc" value="<?php echo $cerveza['enlace_desc'] ?>">
       </p>
       <!--Fin campos de peticion de datos-->
@@ -317,7 +337,7 @@
     });
   </script>
 
-  <!--Script para autocompletar y a帽adir nuevas opciones al input region-->
+  <!--Script para autocompletar y a馻dir nuevas opciones al input region-->
   <script>
     $(function() {
       $("#region").autocomplete({
@@ -362,7 +382,7 @@
     })
   </script>
 
-  <!--Script para autocompletar y a帽adir nuevas opciones al input ciudad-->
+  <!--Script para autocompletar y a馻dir nuevas opciones al input ciudad-->
   <script>
     $(function() {
       $("#ciudad").autocomplete({
@@ -408,7 +428,7 @@
   </script>
 
 
-  <!--Script para autocompletar y a帽adir nuevas opciones al input cervecera-->
+  <!--Script para autocompletar y a馻dir nuevas opciones al input cervecera-->
   <script>
     $(function() {
       $("#cervecera").autocomplete({
@@ -451,7 +471,7 @@
     })
   </script>
 
-  <!--Script para autocompletar y a帽adir nuevas opciones al input marca-->
+  <!--Script para autocompletar y a馻dir nuevas opciones al input marca-->
   <script>
     $(function() {
       $("#marca").autocomplete({
@@ -493,6 +513,71 @@
       })
     })
   </script>
+
+
+
+<!--Script para autocompletar nombre cerveza-->
+  <script>
+    let encontrada="";
+  
+    $(function() {
+      $("#cerveza").autocomplete({
+        source: function(request, response) {
+          opcion = $("#cerveza").val();
+          $.ajax({
+            type: "POST",
+            url: "aux_buscar_guardados.php",
+            data: {
+              "enviar_opcion": opcion,
+              "consulta": "cerveza",
+            }, //creo una nueva variable que es la que voy a enviar
+            dataType: 'json',
+            success: function(respuesta) {
+              console.log(respuesta.length);
+              if(respuesta.length==1){
+                encontrada=respuesta[0].nombre;
+                  console.log(respuesta[0].nombre);
+              }else{
+                encontrada="";
+              }
+              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+                console.log(valor);
+                return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
+                  label: valor.nombre,
+                  value: valor.id
+                }
+              }))
+            },
+            error: function(xhr, estado, error) {
+              console.log("Error: " + (estado));
+            }
+          })
+        },
+        select: function(event, datos) {
+          $('#cerveza').val(datos.item.label);
+          $('#id_cerveza').val(datos.item.value);
+          $('#cerveza_selected').val(datos.item.label);
+          $("#cerveza_mensaje").css("display","block");
+          $('#cerveza_repetida').val('1');
+          return false;
+        }
+      })
+      $('#cerveza').change(function() {
+        if ($('#cerveza').val() !== $('#cerveza_selected').val())
+        {        
+          $('#id_cerveza').val('0'); //cada vez que cambie la cerveza el id se pone a 0 en caso de Chrome tb al pinchar fuera del cajetin, por eso ampliamos la linea de arriba
+          $("#cerveza_mensaje").css("display","none");
+          $('#cerveza_repetida').val('0');
+        }
+        console.log (encontrada);
+        if(encontrada.toUpperCase()===$('#cerveza').val().toUpperCase()){
+            $("#cerveza_mensaje").css("display","block");
+            $('#cerveza_repetida').val('1');
+        }
+      })
+    })
+  </script>
+
 
 
   <?php

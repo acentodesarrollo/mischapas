@@ -1,6 +1,6 @@
 <?php
 include_once("cabecera.php");
-include_once("functions_consulta_cerveza.php");
+include_once("functions.php");
 ?>
 
 <section id="ficha_cerveza">

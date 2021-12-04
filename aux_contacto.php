@@ -13,8 +13,8 @@ $mail = new PHPMailer(true);
 try{
     //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 $mail->IsSMTP();
-//$mail­ -> CharSet = "UTF­8";
-//$mail­ -> Encoding = "quoted­printable";
+//$mailÂ­ -> CharSet = "UTFÂ­8";
+//$mailÂ­ -> Encoding = "quotedÂ­printable";
 $mail->SMTPDebug=0;
 
 //Configuracion servidor mail

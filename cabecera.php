@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-
+<?php
+    // include("conexion.php");
+    include ("functions.php");
+?>
 <head>
     <title>Mis Chapas</title>
     <meta charset="UTF-8">
@@ -18,14 +21,14 @@
     <div id="contenedor">
         <header>
             <h1>
-                <a href="http://localhost:8888/mischapas/web.php">
+                <a href="http://localhost:8888/mischapas/index.php">
                     <!--<img src="img/mischapas.png" alt="Mis Chapas logo">-->Mis chapas
                 </a>
             </h1>
         </header>
         <nav>
             <ul>
-                <li><a href="http://localhost:8888/mischapas/web.php">Listado</a></li>
+                <li><a href="http://localhost:8888/mischapas/index.php">Listado</a></li>
                 <li><a href="http://localhost:8888/mischapas/tipos_cerveza.php">Tipos/subtipos</a></li>
                 <li><a href="http://localhost:8888/mischapas/contacto.php">Contacto</a></li>
             </ul>

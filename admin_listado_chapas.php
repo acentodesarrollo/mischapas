@@ -1,5 +1,5 @@
 <?php
-include_once("conexion.php");
+// include_once("conexion.php");
 include("admin_cabecera.php");
 ?>
 <section id="admin-listado">

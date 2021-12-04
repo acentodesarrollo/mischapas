@@ -12,7 +12,7 @@ a:active {
 }
 
 
-/*AÃ±adimos las fuentes de Google*/
+/*Añadimos las fuentes de Google*/
 
 @font-face {
     font-family: 'Montserrat';
@@ -160,6 +160,22 @@ a:active {
 
 
 /*---------------------------*/
+/* Esto está puesto para que el footer quede pegado abajo */
+body {
+  margin: 0;
+  margin-bottom: 30px;
+  height: 100%;
+}
+html {
+  min-height: 100%;
+  position: relative;
+}
+.contenedor{
+    height: 100%;
+}
+
+/*Lo de arriba está puesto para que el footer quede pegado abajo */
+
 
 #contenido {
     padding: 50px;
@@ -380,7 +396,7 @@ button:hover {
 footer {
     background-color: #333;
     color: #8d8c8c;
-    padding: 10px;
+    /* padding: 10px 0; */
     font-family: 'Montserrat';
     font-size: small;
     font-weight: 300;
@@ -389,6 +405,15 @@ footer {
     display: block;
     clear: both;
     margin-top: 30px;
+    /*para pegar el footer abajo*/
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+}
+
+footer p {
+    margin:15px;
 }
 
 footer a {

@@ -1,6 +1,5 @@
 <?php
 include_once("cabecera.php");
-include_once("functions_consulta_cerveza.php");
 ?>
 
 <section id="ficha_chapa">

@@ -1,8 +1,3 @@
-<?php
-//Formulario alta chapa
-include("conexion.php");
-include("cabecera.php");
-?>
 <section id="listado">
     <ul>
         <?php
@@ -20,6 +15,3 @@ include("cabecera.php");
         ?>
     </ul>
 </section>
-<?php
-include("footer.php");
-?> 

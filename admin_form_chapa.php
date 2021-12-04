@@ -1,8 +1,8 @@
 <?php
-//Formulario alta chapa
+//Formulario alta chapa. Si es nueva la guardamos, si ya la teniamos la modificamos
 include_once("admin_cabecera.php");
-include_once("conexion.php");
-include_once("functions_consulta_cerveza.php");
+// include_once("conexion.php");
+include_once("functions.php");
 $id = $_GET["id"]; //recuperamos el id para mostrar el form editar chapa
 if ($id != null) {
     $chapa = info_chapa($id);
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if($chapa['repetida']==1){
                 echo 'checked'; }?>>
         </p>
-        <!--Preguntamos Nº repetida-->
+        <!--Preguntamos NÂº repetida-->
         <p>
             <label for="num_repetida">Nº repetida</label>
             <input name="num_repetida" type="number" id="num_repetida" placeholder="0" min="0" value="<?php echo $chapa['num_repetida'] ?>">
@@ -114,7 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }, //creo una nueva variable que es la que voy a enviar
                     dataType: 'json',
                     success: function(respuesta) {
-                        //console.log(respuesta);
                         response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
                             console.log(valor);
                             return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
