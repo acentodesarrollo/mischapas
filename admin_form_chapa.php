@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<!--empezamos con el formulario-->  
+<!--empezamos con el formulario-->
 <form method="post" enctype="multipart/form-data">
     <fieldset>
         <?php
             if(isset ($chapa)){
         ?>
         <legend id="add-chapa">Editar chapa</legend>
-        
+
                 <img src="<?php echo $chapa['foto']; ?>">
           <?php
             }else{
@@ -59,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!--Preguntamos si está repetida-->
         <p>
             <label for="repetida">¿Está repetida?</label>
-            <input name="repetida" type="checkbox" id="repetida" value="<?php echo $chapa['repetida']; ?>" <?php 
+            <input name="repetida" type="checkbox" id="repetida" value="<?php echo $chapa['repetida']; ?>" <?php
             if($chapa['repetida']==1){
                 echo 'checked'; }?>>
         </p>
-        <!--Preguntamos NÂº repetida-->
+        <!--Preguntamos Nº repetida-->
         <p>
             <label for="num_repetida">Nº repetida</label>
             <input name="num_repetida" type="number" id="num_repetida" placeholder="0" min="0" value="<?php echo $chapa['num_repetida'] ?>">
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }, //creo una nueva variable que es la que voy a enviar
                     dataType: 'json',
                     success: function(respuesta) {
-                        response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+                        response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta
                             console.log(valor);
                             return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
                                 label: valor.nombre,
@@ -141,5 +141,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     })
 </script>
 <?php
-include("footer.php");
+include("admin_footer.php");
 ?>

@@ -185,7 +185,7 @@ function info_chapa($id){
     return $fila;
 }
 
-//Guardamos los cambios de una chapa que ya teníamos guardada en la base de datos.
+//Guardamos los cambios de una chapa que ya tení­amos guardada en la base de datos.
 function actualizar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma, $id, $fichero)
 {
     include("conexion.php");

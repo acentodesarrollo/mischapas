@@ -1,7 +1,10 @@
+</div>
+<!--cierre del "contenido"-->
 <footer>
-    <h4>Avisos legales</h4>
-    <a href="http://dominio.com/aviso-legal">Polí­tica de cookies</a>
+    <p><a href="admin_form_login.php" target="blank">Admin</a> | Salir || Aviso legal</p>
 </footer>
+</div>
+<!--cierre del "contenedor"-->
 </body>
 
 </html>

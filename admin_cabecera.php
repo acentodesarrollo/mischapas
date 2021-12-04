@@ -5,7 +5,7 @@
     include ("functions.php");
     session_start();
     if (!isset($_SESSION['id'])){
-        header('Location:admin_form_login.php');  
+        header('Location:admin_form_login.php');
     }
 ?>
 <head>
@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="title" content="Mis Chapas">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Mi colecciÃ³n de chapas de cerveza con toda la informaciÃ³n sobre la marca asociada">
+    <meta name="description" content="Mi colección de chapas de cerveza con toda la información sobre la marca asociada">
     <link href="styles/style_admin.css" rel="stylesheet" type="text/css" />
     <!-- <link href="bootstrap-4.0.0-dist/css/bootstrap.css" rel="stylesheet" media="screen"> -->
     <script src="scripts/jquery-3.5.1.js"></script>
@@ -28,15 +28,15 @@
     <div id="contenedor">
         <header>
             <h1>
-                <a href="http://localhost:8888/mischapas/admin_listado.php">Mis chapas | Admin</a>
+                <a href="admin_listado.php">Mis chapas | Admin</a>
             </h1>
         </header>
         <div id="contenido">
             <nav>
                 <ul>
-                    <li><a href="http://localhost:8888/mischapas/admin_listado_chapas.php">Listado chapas</a></li>
-                    <li><a href="http://localhost:8888/mischapas/admin_listado_cervezas.php">Listado cervezas</a></li>
-                    <li><a href="http://localhost:8888/mischapas/admin_form_cerveza.php">Añadir cerveza</a></li>
-                    <li><a href="http://localhost:8888/mischapas/admin_form_chapa.php">Añadir chapa</a></li>
+                    <li><a href="admin_listado_chapas.php">Listado chapas</a></li>
+                    <li><a href="admin_listado_cervezas.php">Listado cervezas</a></li>
+                    <li><a href="admin_form_cerveza.php">Añadir cerveza</a></li>
+                    <li><a href="admin_form_chapa.php">Añadir chapa</a></li>
                 </ul>
             </nav>

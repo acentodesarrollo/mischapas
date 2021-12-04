@@ -19,5 +19,5 @@ include("admin_cabecera.php");
     </ul>
 </section>
 <?php
-include("footer.php");
+include("admin_footer.php");
 ?>

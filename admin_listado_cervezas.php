@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
         <?php
         $consulta = "SELECT id, nom_cerveza  FROM cerveza";
         $datos = mysqli_query($conn, $consulta);
-        while ($fila = mysqli_fetch_array($datos)) { 
+        while ($fila = mysqli_fetch_array($datos)) {
             ?>
             <li>
                     <button type="submit"><a href="admin_form_cerveza.php?id=<?php echo $fila["id"] ?>">Editar</a></button>
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
                     <a href="ficha_cerveza.php?id_cerveza=<?php echo $fila["id"] ?>" id="<?php echo $fila['id'] ?>" class="nom-item-listado-admin"><?php echo $fila['nom_cerveza'] ?></a>
                 </li>
         <?php } ?>
-        
+
     </ul>
 </section>
 <script>
@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
         if(confirm('¿Estás seguro?')){
             window.location.href = "admin_listado_cervezas.php?id="+id;
         }else{
-            
+
         }
     }
 </script>
 <?php
-include("footer.php");
+include("admin_footer.php");
 ?>

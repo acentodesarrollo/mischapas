@@ -30,10 +30,10 @@
       $cerveza_repetida=$_POST["cerveza_repetida"];
       if($cerveza_repetida=="1"){
         echo "Esta cerveza ya existe";
-      }else{     
+      }else{
       if ($id != null) {
         if (actualizar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc, $id)) {
-          header("Refresh:0,url=admin_form_cerveza.php?id=" . $id . "&update=true"); //refrecamos la p醙ina para que cargue la desc. actualizada y no la guardada la vez anterior
+          header("Refresh:0,url=admin_form_cerveza.php?id=" . $id . "&update=true"); //refrecamos la p谩gina para que cargue la desc. actualizada y no la guardada la vez anterior
         }
       } else {
         guardar_cerveza($cerveza_post, $cervecera, $cervecera_id, $graduacion, $pais, $region, $region_id, $ciudad, $ciudad_id, $fermentacion, $color, $marca, $marca_id, $recipiente, $tipo, $subtipo, $desc, $enlace_desc);
@@ -51,14 +51,16 @@
       <?php
       } else {
       ?>
-        <legend id="add-chapa">A馻dir cerveza</legend>
+        <legend id="add-chapa">A帽adir cerveza</legend>
       <?php
       }
       ?>
       <!--Pedimos nombre-->
       <!-- <p>
         <label for="nombre">Cerveza</label>
-        <?php //echo $cerveza['nom_cerveza'] ?>
+        <?php
+        //echo $cerveza['nom_cerveza']
+        ?>
         <input type="text" name="cerveza" id="cerveza" value="<?php //echo $cerveza['nom_cerveza'] ?>" required>
       </p> -->
 
@@ -78,7 +80,7 @@
         </p>
       <!--Pedimos graduacion-->
       <p>
-        <label for="graduacion">Graduaci髇</label>
+        <label for="graduacion">Graduaci贸n</label>
         <input type="number" name="graduacion" id="graduacion" step="0.1" value="<?php echo $cerveza['graduacion'] ?>" required>
       </p>
 
@@ -109,7 +111,7 @@
       </p>
       <!--Pedimos region-->
       <p>
-        <label for="region">Regi髇</label>
+        <label for="region">Regi贸n</label>
         <input name="region" id="region" type="text" value="<?php echo $cerveza['nom_region'] ?>" required>
         <input name="id_region" id="id_region" value="<?php
                                                       if (isset($cerveza['id_region'])) {
@@ -135,7 +137,7 @@
       </p>
       <!--Pedimos fermentacion-->
       <p>
-        <label for="fermentacion">Fermentaci髇</label>
+        <label for="fermentacion">Fermentaci贸n</label>
         <select name="fermentacion" required id="fermentacion">
           <option value="0">Selecciona</option>
           <?php
@@ -270,14 +272,14 @@
           <!--eliminamos este option porque se sustituye por el del archivo aux_buscar_subtipo.php-->
         </select>
       </p>
-      <!--Pedimos descripci髇-->
+      <!--Pedimos descripci贸n-->
       <p>
-        <label for="desc">Descripci髇</label><br>
+        <label for="desc">Descripci贸n</label><br>
         <textarea name="desc" id="desc"><?php echo $cerveza['descripcion']; ?></textarea>
       </p>
       <!--Pedimos enlace descripcion-->
       <p>
-        <label for="enlace_desc">Enlace descripci髇</label>
+        <label for="enlace_desc">Enlace descripci贸n</label>
         <input type="text" name="enlace_desc" id="enlace_desc" value="<?php echo $cerveza['enlace_desc'] ?>">
       </p>
       <!--Fin campos de peticion de datos-->
@@ -337,7 +339,7 @@
     });
   </script>
 
-  <!--Script para autocompletar y a馻dir nuevas opciones al input region-->
+  <!--Script para autocompletar y a帽adir nuevas opciones al input region-->
   <script>
     $(function() {
       $("#region").autocomplete({
@@ -355,7 +357,7 @@
             dataType: 'json',
             success: function(respuesta) {
               //console.log(respuesta);
-              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta
                 console.log(valor);
                 return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
                   label: valor.nombre,
@@ -382,7 +384,7 @@
     })
   </script>
 
-  <!--Script para autocompletar y a馻dir nuevas opciones al input ciudad-->
+  <!--Script para autocompletar y a帽adir nuevas opciones al input ciudad-->
   <script>
     $(function() {
       $("#ciudad").autocomplete({
@@ -400,7 +402,7 @@
             dataType: 'json',
             success: function(respuesta) {
               //console.log(respuesta);
-              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta
                 console.log(valor);
                 return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
                   label: valor.nombre,
@@ -428,7 +430,7 @@
   </script>
 
 
-  <!--Script para autocompletar y a馻dir nuevas opciones al input cervecera-->
+  <!--Script para autocompletar y a帽adir nuevas opciones al input cervecera-->
   <script>
     $(function() {
       $("#cervecera").autocomplete({
@@ -444,7 +446,7 @@
             dataType: 'json',
             success: function(respuesta) {
               //console.log(respuesta);
-              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta
                 console.log(valor);
                 return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
                   label: valor.nombre,
@@ -471,7 +473,7 @@
     })
   </script>
 
-  <!--Script para autocompletar y a馻dir nuevas opciones al input marca-->
+  <!--Script para autocompletar y a帽adir nuevas opciones al input marca-->
   <script>
     $(function() {
       $("#marca").autocomplete({
@@ -487,7 +489,7 @@
             dataType: 'json',
             success: function(respuesta) {
               //console.log(respuesta);
-              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta
                 console.log(valor);
                 return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
                   label: valor.nombre,
@@ -519,7 +521,7 @@
 <!--Script para autocompletar nombre cerveza-->
   <script>
     let encontrada="";
-  
+
     $(function() {
       $("#cerveza").autocomplete({
         source: function(request, response) {
@@ -540,7 +542,7 @@
               }else{
                 encontrada="";
               }
-              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta 
+              response($.map(respuesta, function(valor) { //cargamos jQuery UI y le pasamos la respuesta
                 console.log(valor);
                 return { //transformamos la respuesta que recibimos de aux_buscar_opcion al formato adecuado
                   label: valor.nombre,
@@ -564,7 +566,7 @@
       })
       $('#cerveza').change(function() {
         if ($('#cerveza').val() !== $('#cerveza_selected').val())
-        {        
+        {
           $('#id_cerveza').val('0'); //cada vez que cambie la cerveza el id se pone a 0 en caso de Chrome tb al pinchar fuera del cajetin, por eso ampliamos la linea de arriba
           $("#cerveza_mensaje").css("display","none");
           $('#cerveza_repetida').val('0');
@@ -581,5 +583,5 @@
 
 
   <?php
-  include("footer.php");
+  include("admin_footer.php");
   ?>
