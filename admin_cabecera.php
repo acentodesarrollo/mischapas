@@ -28,7 +28,7 @@
     <div id="contenedor">
         <header>
             <h1>
-                <a href="admin_listado.php">Mis chapas | Admin</a>
+                <a href="admin_listado_chapas.php">Mis chapas | Admin</a>
             </h1>
         </header>
         <div id="contenido">
