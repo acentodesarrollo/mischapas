@@ -1,4 +1,4 @@
-/*Añadimos las fuentes de Google*/
+/*Aï¿½adimos las fuentes de Google*/
 
 @font-face {
     font-family: 'Montserrat';
@@ -163,21 +163,22 @@ a:active {
 
 /*--------------------------------------------*/
 
-/* Esto está puesto para que el footer quede pegado abajo */
+/* Esto estÃ¡ puesto para que el footer quede pegado abajo */
 body {
+    /* margin:0; */
     margin-bottom: 30px;
     height: 100%;/*Esto es para que el menu ocupe todo el alto de la ventana*/
 }
 html {
     min-height: 100%;
     position: relative;
-    height: 100%;/*Esto es para que el menu ocupe todo el alto de la ventana*/
+    /* height: 100%;/*Esto es para que el menu ocupe todo el alto de la ventana*/
 }
-/*Lo de arriba está puesto para que el footer quede pegado abajo */
+/*Lo de arriba estÃ¡ puesto para que el footer quede pegado abajo */
 
 #contenedor {
-    height: 100%;/*Esto es para que el menu ocupe todo el alto de la ventana*/
-}
+    /* height: 100%; */
+}/*Esto es para que el menu ocupe todo el alto de la ventana
 
 
 /*----------Header----------*/
@@ -209,7 +210,6 @@ nav {
     font-style: normal;
     font-display: swap;
     text-align: center;
-    float: left;
     margin-right: 30px;
     text-align: left;
 }
@@ -238,7 +238,8 @@ nav ul li a:hover {
     font-style: normal;
     font-display: swap;
     width: 100%;
-    height: 100%;/*Esto es para que el menu ocupe todo el alto de la ventana*/
+    min-height: 100vh;
+    /* height: 100%;/*Esto es para que el menu ocupe todo el alto de la ventana*/
 }
 
 #admin-listado {
@@ -249,7 +250,7 @@ nav ul li a:hover {
 #admin-listado ul li {
     list-style: none;
     margin-bottom: 30px;
-    display: inline-block;
+    /* display: inline-block; */
     width: 100%;
 }
 
@@ -286,6 +287,7 @@ section>p {
 legend {
     font-size: 2em;
     margin-bottom: 50px;
+    display: flex;
 }
 
 fieldset {
@@ -296,7 +298,7 @@ form {
     font-family: 'Montserrat';
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    /* font-display: swap; */
     margin: 50px;
 }
 
@@ -351,19 +353,18 @@ button:hover {
 footer {
     background-color: #333;
     color: #8d8c8c;
-    padding: 10px 0;
+    padding: 3px 0;
     font-family: 'Montserrat';
     font-size: small;
     font-weight: 300;
     font-style: normal;
     font-display: swap;
     display: block;
-    /* clear: both; */
+    clear: both;
     /*para pegar el footer abajo*/
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
-    height: 45px;
 }
 
 footer p {
@@ -379,10 +380,10 @@ footer a:hover {
 }
 
 
-/*CUIDADO! Esto es para los select en cascada del ejemplo*/
+/*CUIDADO! Esto es para los select en cascada*/
 
 
-/* 
+/*
 .hidden {
     display: none;
 } */

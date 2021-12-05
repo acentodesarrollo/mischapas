@@ -1,18 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
-}
-
-a,
-a:link,
-a:visited,
-a:active {
-    text-decoration: none;
-}
-
-
-/*Añadimos las fuentes de Google*/
+/*AÃ±adimos las fuentes de Google*/
 
 @font-face {
     font-family: 'Montserrat';
@@ -158,9 +144,22 @@ a:active {
     font-display: swap;
 }
 
-
 /*---------------------------*/
-/* Esto está puesto para que el footer quede pegado abajo */
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+/* Esto estï¿½ puesto para que el footer quede pegado abajo */
 body {
   margin: 0;
   margin-bottom: 30px;
@@ -170,11 +169,12 @@ html {
   min-height: 100%;
   position: relative;
 }
-.contenedor{
-    height: 100%;
-}
 
-/*Lo de arriba está puesto para que el footer quede pegado abajo */
+/* #contenedor{
+    height: 100%;
+} */
+
+/*Lo de arriba estÃ¡ puesto para que el footer quede pegado abajo */
 
 
 #contenido {
@@ -183,6 +183,7 @@ html {
     font-weight: 400;
     font-style: normal;
     font-display: swap;
+    display: block;
 }
 
 
@@ -236,11 +237,14 @@ nav ul li a:hover {
 
 /*---------Centro---------*/
 
-
 /*------------------------*/
 
 
 /*---------Listados---------*/
+
+#listado{
+  display: flex;
+}
 
 #listado ul li {
     list-style: none;
@@ -396,7 +400,7 @@ button:hover {
 footer {
     background-color: #333;
     color: #8d8c8c;
-    /* padding: 10px 0; */
+    padding: 3px 0;
     font-family: 'Montserrat';
     font-size: small;
     font-weight: 300;
@@ -404,12 +408,10 @@ footer {
     font-display: swap;
     display: block;
     clear: both;
-    margin-top: 30px;
     /*para pegar el footer abajo*/
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 45px;
 }
 
 footer p {
