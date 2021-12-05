@@ -2,9 +2,7 @@
 include("conexion.php");
 $usuario = ($_POST["usuario"]);
 $password = ($_POST["password"]);
-var_dump($usuario);
 $consulta = "SELECT * FROM usuarios WHERE usuario = ?";
-var_dump($consulta);
 $stmt=mysqli_prepare($conn,$consulta);//prepara una consulta. Inyeccion SQL
 mysqli_stmt_bind_param($stmt,"s",$usuario);//vinculamos cada interrogante con su valor. La s es de "string", si tengo 2 interrogantes, pondria "ss"
 mysqli_stmt_execute($stmt);
