@@ -4,7 +4,8 @@ include("admin_cabecera.php");
 if ($_SERVER['REQUEST_METHOD']=='GET'){
     $id = $_GET['id'];
     if ($id!=null){
-        echo "eliminando cerveza...".$id."\n";
+        // echo "Eliminando cerveza...".$id."\n";
+        echo "Cerveza eliminada";
         eliminar_cerveza($id);
     }
 }

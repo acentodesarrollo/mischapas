@@ -13,7 +13,7 @@ function info_cerveza_by_chapa($id_chapa)
     INNER JOIN cervecera CE ON CE.id = C.id_cervecera
     INNER JOIN chapas CH ON C.id = CH.id_cerveza
     INNER JOIN region_pais RP ON RP.id = CR.id_region
-    INNER JOIN pais_continente PC ON PC.id = RP.id_pais 
+    INNER JOIN pais_continente PC ON PC.id = RP.id_pais
     INNER JOIN forma F ON F.id = CH.id_forma
     INNER JOIN subtipo_tipo ST ON ST.id = C.id_subtipo
     INNER JOIN tipo T ON T.id = ST.id_tipo
@@ -36,7 +36,7 @@ function info_cerveza_by_id($id_cerveza)
     INNER JOIN ciudad_region CR ON CR.id = C.id_ciudad
     INNER JOIN cervecera CE ON CE.id = C.id_cervecera
     INNER JOIN region_pais RP ON RP.id = CR.id_region
-    INNER JOIN pais_continente PC ON PC.id = RP.id_pais 
+    INNER JOIN pais_continente PC ON PC.id = RP.id_pais
     INNER JOIN subtipo_tipo ST ON ST.id = C.id_subtipo
     INNER JOIN tipo T ON T.id = ST.id_tipo
     WHERE C.id = " . $id_cerveza . ";";
@@ -115,16 +115,16 @@ function actualizar_cerveza($cerveza, $cervecera, $cervecera_id, $graduacion, $p
         $marca_id = $conn->insert_id;
     }
     $consulta = "UPDATE cerveza SET nom_cerveza='" . $cerveza . "',
-    graduacion=" . $graduacion . ", 
-    id_fermentacion=" . $fermentacion . ", 
-    id_marca=" . $marca_id . ", 
-    id_recipiente=" . $recipiente . ", 
-    id_subtipo=" . $subtipo . ", 
-    id_color=" . $color . ", 
-    id_cervecera=" . $cervecera_id . ", 
-    id_ciudad=" . $ciudad_id . ", 
-    descripcion='" . $desc . "', 
-    enlace_desc='" . $enlace_desc . "' 
+    graduacion=" . $graduacion . ",
+    id_fermentacion=" . $fermentacion . ",
+    id_marca=" . $marca_id . ",
+    id_recipiente=" . $recipiente . ",
+    id_subtipo=" . $subtipo . ",
+    id_color=" . $color . ",
+    id_cervecera=" . $cervecera_id . ",
+    id_ciudad=" . $ciudad_id . ",
+    descripcion='" . $desc . "',
+    enlace_desc='" . $enlace_desc . "'
     WHERE id=" . $id . ";";
     if ($conn->query($consulta)) {
         return true;
@@ -137,7 +137,6 @@ function actualizar_cerveza($cerveza, $cervecera, $cervecera_id, $graduacion, $p
 function eliminar_cerveza($id){
     include("conexion.php");
     $consulta="DELETE FROM cerveza WHERE id=".$id;
-    echo $consulta;
     mysqli_query($conn, $consulta);
 }
 
@@ -202,7 +201,7 @@ function actualizar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma
         $repetida = 1;
     }
 
-    $consulta = "UPDATE chapas 
+    $consulta = "UPDATE chapas
     SET id_cerveza=" . $cerveza_id . ",
     foto='" . $fichero . "',
     repetida=" . $repetida . ",
