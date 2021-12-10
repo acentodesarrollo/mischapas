@@ -1,4 +1,5 @@
 <?php
+// Buscamos y mostramos las opciones guradas en la base de datos como campo de texto predictivo
 include("conexion.php");
 $opcion=$_POST["enviar_opcion"];
 $consulta=$_POST["consulta"];

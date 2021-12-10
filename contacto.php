@@ -1,4 +1,5 @@
 <?php
+//Formulario de contacto de la web, envia los mensajes a acentodesarrollo@gmail.com
 include("cabecera.php");
 include("aux_contacto.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

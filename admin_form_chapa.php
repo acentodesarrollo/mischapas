@@ -1,5 +1,5 @@
 <?php
-//Formulario alta chapa. Si es nueva la guardamos, si ya la teniamos la modificamos
+//Formulario alta chapa. Si es nueva la guardamos, si ya la teniamos la modificamos-
 include_once("admin_cabecera.php");
 // include_once("conexion.php");
 include_once("functions.php");

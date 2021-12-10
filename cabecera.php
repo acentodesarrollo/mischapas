@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php
-    // include("conexion.php");
     include ("functions.php");
 ?>
 <head>
@@ -20,9 +19,7 @@
     <div id="contenedor">
         <header>
             <h1>
-                <a href="index.php">
-                    <!--<img src="img/mischapas.png" alt="Mis Chapas logo">-->Mis chapas
-                </a>
+                <a href="index.php">Mis chapas</a>
             </h1>
         </header>
         <nav>

@@ -1,6 +1,7 @@
 <?php
 include_once("cabecera.php");
 include_once("functions.php");
+// Mostramos la ficha de la cervezas
 ?>
 
 <section id="ficha_cerveza">

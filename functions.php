@@ -134,11 +134,21 @@ function actualizar_cerveza($cerveza, $cervecera, $cervecera_id, $graduacion, $p
     }
 }
 
+//Eliminamos cerveza
 function eliminar_cerveza($id){
     include("conexion.php");
     $consulta="DELETE FROM cerveza WHERE id=".$id;
     mysqli_query($conn, $consulta);
 }
+
+
+//Eliminamos chapa
+function eliminar_chapa($id){
+    include("conexion.php");
+    $consulta="DELETE FROM chapa WHERE id=".$id;
+    mysqli_query($conn, $consulta);
+}
+
 
 //Guardamos los datos de una nueva chapa en la base de datos
 function guardar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma)

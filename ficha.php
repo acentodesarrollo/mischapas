@@ -1,5 +1,6 @@
 <?php
 include_once("cabecera.php");
+// Mostramos la ficha de la chapa de la parte pública
 ?>
 
 <section id="ficha_chapa">
@@ -26,7 +27,6 @@ include_once("cabecera.php");
       <p><span class="ficha">Descripción</span>: ' . $fila['descripcion'] . '<br><a href="' . $fila['enlace_desc'] . '" target="_blank">Enlace a la descripción</a></p>';
   }
   ?>
-  
 </section>
 
 <?php

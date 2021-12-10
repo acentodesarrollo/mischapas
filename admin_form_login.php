@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
+<!-- Página de registro que tiene su propia cabecera y pie -->
 <head>
     <title>Mis Chapas</title>
     <meta charset="UTF-8">

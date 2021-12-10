@@ -1,4 +1,5 @@
 <?php
+//Mostramos el listado y descripción de tipos y subtipos de cerveza
 include("conexion.php");
 include("cabecera.php");
 $consulta = "SELECT * FROM tipo";
@@ -30,7 +31,7 @@ $fila = mysqli_fetch_array($datos);
     </tr>
 <h1>Subtipos de cerveza</h1>
     <?php
-    $consulta = "SELECT * 
+    $consulta = "SELECT *
     FROM tipo T
     INNER JOIN subtipo_tipo ST ON ST.id_tipo=T.id";
     $datos = mysqli_query($conn, $consulta);

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Esta es la cabecera de la parte de administración -->
 <html lang="es">
 <?php
     include("conexion.php");

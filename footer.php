@@ -1,3 +1,4 @@
+        <!-- Pie de la parte pública -->
         </div>
         <!--cierre del "contenido"-->
         <footer>

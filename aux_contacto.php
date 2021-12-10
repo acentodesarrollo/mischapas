@@ -1,4 +1,5 @@
 <?php
+// Usamos PHPMailer para enviar el mensaje desde el formulario de contacto
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -35,8 +36,8 @@ $mail->send();
 return true;
 // echo '<script type="text/javascript">
 //            alert("Enviado Correctamente");
-//         </script>';  
-} 
+//         </script>';
+}
 catch (Exception $e) {
    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         return false;

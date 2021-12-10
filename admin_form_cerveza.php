@@ -55,15 +55,6 @@
       <?php
       }
       ?>
-      <!--Pedimos nombre-->
-      <!-- <p>
-        <label for="nombre">Cerveza</label>
-        <?php
-        //echo $cerveza['nom_cerveza']
-        ?>
-        <input type="text" name="cerveza" id="cerveza" value="<?php //echo $cerveza['nom_cerveza'] ?>" required>
-      </p> -->
-
       <p>
             <label for="cerveza">Cerveza</label>
             <input name="cerveza" id="cerveza" type="text" value="<?php echo $cerveza['nom_cerveza'] ?>" required>

@@ -1,4 +1,5 @@
 <?php
+// Buscamos el subtipo dependiendo del tipo seleccionado y mostramos las opciones correspondientes
     include_once("conexion.php");
     $tipo=$_POST['enviar_tipo'];
     $subtipo = $_POST['enviar_subtipo'];
