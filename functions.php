@@ -145,7 +145,7 @@ function eliminar_cerveza($id){
 //Eliminamos chapa
 function eliminar_chapa($id){
     include("conexion.php");
-    $consulta="DELETE FROM chapa WHERE id=".$id;
+    $consulta="DELETE FROM chapas WHERE id=".$id;
     mysqli_query($conn, $consulta);
 }
 
@@ -167,6 +167,10 @@ function guardar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma)
         $repetida = 0;
     } else {
         $repetida = 1;
+    }
+
+    if ($num_repetida == null) {
+        $num_repetida = 0;
     }
 
     $consulta = "INSERT INTO chapas(id_cerveza,foto, repetida,num_repetida,id_forma) VALUES (
@@ -206,7 +210,7 @@ function actualizar_chapa($imagen, $cerveza_id, $repetida, $num_repetida, $forma
     }
 
     if (is_null($repetida)) {
-        $repetida = 0;
+        $repetida = "";
     } else {
         $repetida = 1;
     }

@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
                     <button type="submit"><a href="admin_form_cerveza.php?id=<?php echo $fila["id"] ?>">Editar</a></button>
                     <button type="submit" id="eliminar"><a href="#" onclick="eliminar(<?php echo $fila['id'] ?>)">Eliminar</a></button>
                     <a href="ficha_cerveza.php?id_cerveza=<?php echo $fila["id"] ?>" id="<?php echo $fila['id'] ?>" class="nom-item-listado-admin"><?php echo $fila['nom_cerveza'] ?></a>
-                </li>
+            </li>
         <?php } ?>
 
     </ul>

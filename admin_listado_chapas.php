@@ -23,9 +23,7 @@ if ($_SERVER['REQUEST_METHOD']=='GET'){
                     <div id="img-admin-listado"><img src=<?php echo $fila['foto'] ?>></div>
                     <a class="nom-item-listado-admin" href="ficha.php?id_chapa=<?php echo $fila["id"]?>" id="<?php echo $fila['id'] ?>"><?php echo $fila['nom_cerveza'] ?></a> | Repeticiones: <?php echo $fila['num_repetida'] ?>
             </li>
-        <?php
-      }
-        ?>
+        <?php } ?>
     </ul>
 </section>
 <script>
